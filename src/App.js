@@ -1,42 +1,40 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import routes from './routes';
 import Container from './components/Container';
-import ContactForm from './components/ContactForm';
-import Filter from './components/Filter';
-import ContactList from './components/ContactList';
+import AppBar from './components/AppBar';
+import HomeView from './views/HomeView';
+import ContactsView from './views/ContactsView';
+import LoginView from './views/LoginView';
+import RegisterView from './views/RegisterView';
+import operations from './redux/auth/auth-operation';
 
 class App extends Component {
-  // componentDidMount() {
-  //   const localContacts = JSON.parse(localStorage.getItem("contacts"));
-
-  //   if (localContacts) {
-  //     this.setState({ contacts: [...localContacts] });
-  //   }
-  // }
-  // componentDidUpdate(prevProps, prevState) {
-  //   const prevContacts = prevProps.contacts;
-  //   const nextContacts = this.props.contacts;
-
-  //   if (prevContacts !== nextContacts) {
-  //     console.log("обновилось поле ");
-  //     localStorage.setItem("contacts", JSON.stringify(nextContacts));
-  //   }
-  // }
+  componentDidMount() {
+    this.props.getCurrentUser();
+  }
 
   render() {
     return (
       <div className="App">
         <Container>
-          <h1>Phonebook</h1>
-          <ContactForm />
-          <div>
-            <h2>Contacts</h2>
-            <Filter />
-            <ContactList />
-          </div>
+          <AppBar />
+
+          <Switch>
+            <Route exact path={routes.home} component={HomeView} />
+            <Route path={routes.register} component={RegisterView} />
+            <Route path={routes.login} component={LoginView} />
+            <Route path={routes.contacts} component={ContactsView} />
+          </Switch>
         </Container>
       </div>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = {
+  getCurrentUser: operations.getCurrentUserInfo,
+};
+
+export default connect(null, mapDispatchToProps)(App);
