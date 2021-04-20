@@ -1,23 +1,25 @@
 import { connect } from 'react-redux';
 import selectors from '../../redux/auth/auth-selectors';
 import operation from '../../redux/auth/auth-operation';
+import Button from '@material-ui/core/Button';
+import s from './UserMenu.module.css';
+import Chip from '@material-ui/core/Chip';
+import Avatar from '@material-ui/core/Avatar';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const UserMenu = ({ name, onLogout }) => (
-  <>
-    {/* <Navbar.Toggle />
-    <Navbar.Collapse className="justify-content-end">
-      <Navbar.Text> */}
-    <p>Welcome, {name}</p>
-    <button type="button" onClick={onLogout}>
-      Logout
-    </button>
-    {/* </Navbar.Text>
-    </Navbar.Collapse> */}
-  </>
+  <div className={s.userNav}>
+    <Chip
+      className={s.profile}
+      size="small"
+      avatar={<Avatar alt={name} src="/static/images/avatar/1.jpg" />}
+      label={`Welcome, ${name}`}
+    />
+    <ExitToAppIcon className={s.btn} onClick={onLogout} />
+  </div>
 );
 const mapStateToProps = state => ({
   name: selectors.getName(state),
-  onAuth: selectors.getAuth(state),
 });
 
 const mapDispatchToProps = {

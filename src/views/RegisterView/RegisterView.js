@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import operation from '../../redux/auth/auth-operation';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import s from './RegisterView.module.css';
 
 export class RegisterView extends Component {
   state = {
@@ -41,13 +43,13 @@ export class RegisterView extends Component {
   render() {
     return (
       <div>
-        <Form onSubmit={this.hendleSubmit}>
+        {/* <Form onSubmit={this.hendleSubmit}>
           <Form.Group controlId="formBasicName">
             <Form.Label>Name</Form.Label>
             <Form.Control
               onChange={this.hendleChange}
               name="name"
-              value={this.state.name}
+              // value={this.state.name}
               type="name"
               placeholder="Enter your name"
             />
@@ -58,7 +60,7 @@ export class RegisterView extends Component {
             <Form.Control
               onChange={this.hendleChange}
               name="email"
-              value={this.state.email}
+              // value={this.state.email}
               type="email"
               placeholder="Enter email"
             />
@@ -69,7 +71,7 @@ export class RegisterView extends Component {
             <Form.Control
               onChange={this.hendleChange}
               name="password"
-              value={this.state.password}
+              // value={this.state.password}
               type="password"
               placeholder="Password"
             />
@@ -78,7 +80,51 @@ export class RegisterView extends Component {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-        </Form>
+        </Form> */}
+
+        <form className={s.form} onSubmit={this.hendleSubmit}>
+          <TextField
+            required
+            onChange={this.hendleChange}
+            label="Enter your name"
+            name="name"
+            type="text"
+            inputProps={{
+              value: this.state.name,
+            }}
+          />
+          <TextField
+            required
+            onChange={this.hendleChange}
+            label="Enter email"
+            name="email"
+            type="email"
+            inputProps={{
+              value: this.state.email,
+            }}
+          />
+
+          <TextField
+            required
+            onChange={this.hendleChange}
+            label="Password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            inputProps={{
+              value: this.state.password,
+            }}
+          />
+          <Button
+            className={s.btn}
+            variant="outlined"
+            color="secondary"
+            size="small"
+            type="submit"
+          >
+            Submit
+          </Button>
+        </form>
       </div>
     );
   }

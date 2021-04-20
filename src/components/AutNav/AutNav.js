@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import routes from '../../routes';
 import s from './AutNav.module.css';
-import { Nav } from 'react-bootstrap';
+import Typography from '@material-ui/core/Typography';
 
 const AutNav = () => (
-  <>
-    <Nav.Item>
+  <div className={s.AutNav}>
+    <Typography color="inherit">
       <NavLink
         to={routes.login}
         activeClassName={s.activelink}
@@ -13,8 +13,8 @@ const AutNav = () => (
       >
         Login
       </NavLink>
-    </Nav.Item>
-    <Nav.Item>
+    </Typography>
+    <Typography color="inherit">
       <NavLink
         to={routes.register}
         activeClassName={s.activelink}
@@ -22,8 +22,8 @@ const AutNav = () => (
       >
         Register
       </NavLink>
-    </Nav.Item>
-  </>
+    </Typography>
+  </div>
 );
 
 export default AutNav;

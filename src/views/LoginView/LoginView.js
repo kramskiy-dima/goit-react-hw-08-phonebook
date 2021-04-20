@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
 import operation from '../../redux/auth/auth-operation';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import s from './LoginView.module.css';
 
-export class LoginView extends Component {
+class LoginView extends Component {
   state = {
     email: '',
     password: '',
@@ -36,35 +37,41 @@ export class LoginView extends Component {
   };
   render() {
     return (
-      <div>
-        <Form onSubmit={this.hendleSubmit}>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              onChange={this.hendleChange}
-              name="email"
-              value={this.state.email}
-              type="email"
-              placeholder="Enter email"
-            />
-            <Form.Text className="text-muted"></Form.Text>
-          </Form.Group>
+      <>
+        <form className={s.form} onSubmit={this.hendleSubmit}>
+          <TextField
+            required
+            onChange={this.hendleChange}
+            label="Enter email"
+            name="email"
+            type="email"
+            inputProps={{
+              value: this.state.email,
+            }}
+          />
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              onChange={this.hendleChange}
-              name="password"
-              value={this.state.password}
-              type="password"
-              placeholder="Password"
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
+          <TextField
+            required
+            onChange={this.hendleChange}
+            label="Password"
+            name="password"
+            type="password"
+            inputProps={{
+              value: this.state.password,
+            }}
+            autoComplete="current-password"
+          />
+          <Button
+            className={s.btn}
+            variant="outlined"
+            color="secondary"
+            size="small"
+            type="submit"
+          >
             Submit
           </Button>
-        </Form>
-      </div>
+        </form>
+      </>
     );
   }
 }

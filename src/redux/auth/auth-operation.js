@@ -1,3 +1,4 @@
+// import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import authActions from './auth-actions';
 
@@ -30,7 +31,7 @@ const login = user => async dispatch => {
     token.set(data.token);
     dispatch(authActions.loginSuccess(data));
   } catch (error) {
-    dispatch(authActions.logoutError(error));
+    dispatch(authActions.loginError(error));
   }
 };
 
@@ -52,14 +53,14 @@ const getCurrentUserInfo = () => async (dispatch, getState) => {
   if (!persistedToken) {
     return;
   }
-  console.log(persistedToken);
+
   token.set(persistedToken);
 
   dispatch(authActions.getCurrentUserRequest());
   try {
     const response = await axios.get('/users/current');
     // console.log(data);
-    dispatch(authActions.getCurrentUserSuccess(response.data));
+    dispatch(authActions.getCurrentUserSucces(response.data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
   }

@@ -13,7 +13,7 @@ const logoutSuccess = createAction('auth/logoutSuccess');
 const logoutError = createAction('auth/logoutError');
 
 const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
-const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
+const getCurrentUserSucces = createAction('auth/getCurrentUserSucces');
 const getCurrentUserError = createAction('auth/getCurrentUserError');
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -28,6 +28,6 @@ export default {
   loginSuccess,
   loginError,
   getCurrentUserRequest,
-  getCurrentUserSuccess,
+  getCurrentUserSucces,
   getCurrentUserError,
 };
