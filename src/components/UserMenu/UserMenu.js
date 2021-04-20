@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import selectors from '../../redux/auth/auth-selectors';
 import operation from '../../redux/auth/auth-operation';
-import Button from '@material-ui/core/Button';
 import s from './UserMenu.module.css';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
